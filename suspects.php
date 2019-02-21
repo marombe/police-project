@@ -17,5 +17,47 @@ require 'security.php'
 </head>
 <body>
 <?php require 'navbar.php'; ?>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>NAMES</td>
+            <td>IDENTITY</td>
+            <td>GENDER</td>
+            <td>DATE IN</td>
+            <td>TYPE</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>1</td>
+            <td>chris kirubi</td>
+            <td>4376475</td>
+            <td>male</td>
+            <td>2019-02=10</td>
+            <td>robbery</td>
+        </tr>
+        <?php
+        require 'db.php';
+        $sql = "SELECT * FROM suspects";
+        $results = mysqli_query($conn, $sql);
+        while($row = mysqli_fetch_assoc($results))
+        {
+            extract($row);
+            echo "<tr>
+                    <td>$id</td>
+                    <td>$names</td>
+                    <td>$identity</td>
+                    <td>$gender</td>
+                    <td>$date</td>
+                    <td>$type</td>
+                    </tr>";
+        }
+
+        ?>
+        </tbody>
+    </table>
+</div>
 </body>
 </html>
